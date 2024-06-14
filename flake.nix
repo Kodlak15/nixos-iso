@@ -26,6 +26,13 @@
 
     packages."x86_64-linux" = {
       minimal = self.nixosConfigurations."minimalIso".config.system.build.isoImage;
+      # Helper functions for setting up Yubikey based FDE
+      rbtohex = nixpkgs.writeShellScriptBin "rbtohex" ''
+        od -An -vtx1 | tr -d ' \n'
+      '';
+      hextorb = nixpkgs.writeShellScriptBin "hextorb" ''
+        tr '[:lower:]' '[:upper:]' | sed -e 's/\([0-9A-F]\{2\}\)/\\\\\\x\1/gI'| xargs printf
+      '';
     };
   };
 }
