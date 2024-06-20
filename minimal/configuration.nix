@@ -30,6 +30,7 @@ in {
   environment.systemPackages = with pkgs; [
     neovim
     wget
+    git
   ];
 
   programs.gnupg.agent = {
