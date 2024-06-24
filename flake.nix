@@ -14,7 +14,7 @@
     };
   in {
     nixosConfigurations = {
-      minimalIso = nixpkgs.lib.nixosSystem {
+      minimal-iso = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           # Load custom configurations as well as everything from the minimal CD
@@ -25,7 +25,7 @@
     };
 
     packages."x86_64-linux" = {
-      minimal = self.nixosConfigurations."minimalIso".config.system.build.isoImage;
+      minimal-iso = self.nixosConfigurations."minimal-iso".config.system.build.isoImage;
     };
   };
 }
